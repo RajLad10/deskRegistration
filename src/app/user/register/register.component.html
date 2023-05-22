@@ -1,0 +1,66 @@
+
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" formControlName="firstName" required minlength="2" maxlength="100"
+             [ngClass]="{'is-invalid' : submitted && f['firstName'].errors}">
+            <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                <div *ngIf="f['firstName'].errors['required']">Please enter First Name</div>
+                <div *ngIf="f['firstName'].errors['minlength']">First name must be between 2-100 characters</div>
+                <div *ngIf="f['firstName'].errors['maxlength']">First name must be between 2-100 characters</div>
+                <div *ngIf="f['firstName'].errors['pattern']">Please enter a valid First Name</div>
+            </div>
+        </div>
+
+        <div>
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" formControlName="lastName" required minlength="2" maxlength="100"
+             [ngClass]="{'is-invalid' : submitted && f['lastName'].errors}">
+            <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                <div *ngIf="f['lastName'].errors['required']">Please enter Last Name</div>
+                <div *ngIf="f['lastName'].errors['minlength']">Last name must be between 2-100 characters</div>
+                <div *ngIf="f['lastName'].errors['maxlength']">Last name must be between 2-100 characters</div>
+                <div *ngIf="f['lastName'].errors['pattern']">Please enter a valid Last Name</div>
+            </div>
+        </div>
+
+        <div>
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" formControlName="email" required 
+             [ngClass]="{'is-invalid' : submitted && f['email'].errors}">
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Please enter Email</div>
+                <div *ngIf="f['email'].errors['email']">Email is invalid</div>
+                <div *ngIf="f['email'].errors['pattern']">Email ID must be between 3-80 characters</div>
+            </div>
+        </div>
+
+        <div>
+            <label class="form-label">Password</label>
+            <input type="text" class="form-control" formControlName="password" required minlength="8" maxlength="25"
+             [ngClass]="{'is-invalid' : submitted && f['password'].errors}">
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                <div *ngIf="f['password'].errors['required']">Please enter Password</div>
+                <div *ngIf="f['password'].errors['minlength']">Password must be between 8-25 characters</div>
+                <div *ngIf="f['password'].errors['maxlength']">Password must be between 8-25 characters</div>
+                <div *ngIf="f['password'].errors['pattern']">At least 1 uppercase alphabet, 1 Special Character and 1 numeric value required</div>
+            </div>
+        </div>
+
+        <div>
+            <label class="form-label">Confirm Password</label>
+            <input type="text" class="form-control" formControlName="confirmPassword" required
+                [ngClass]="{'is-invalid' : submitted && f['confirmPassword'].errors}">
+            <div *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback">
+                <div *ngIf="f['confirmPassword'].errors['required']">Please enter Confirm Password</div>
+                <div *ngIf="f['confirmPassword'].errors['matching']">Password does not match</div>
+            </div>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" type="button" (click)="onReset()">Cancel</button>
+            <input class="btn btn-success" type="submit">
+        </div>
+    </form>
+</div>
